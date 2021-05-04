@@ -9,15 +9,18 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    apt_preferences.cpp \
     main.cpp \
     mastwindow.cpp \
     system_info_form.cpp
 
 HEADERS += \
+    apt_preferences.h \
     mastwindow.h \
     system_info_form.h
 
 FORMS += \
+    apt_preferences.ui \
     mastwindow.ui \
     system_info_form.ui
 

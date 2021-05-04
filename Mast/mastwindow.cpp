@@ -24,3 +24,10 @@ void MastWindow::on_system_info_button_clicked()
     systemInfoForm.show();
 
 }
+
+
+
+void MastWindow::on_apt_settings_button_clicked()
+{
+    aptPreferences.show();
+}

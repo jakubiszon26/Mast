@@ -37,13 +37,6 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0">
-      <widget class="QPushButton" name="services_manager_button">
-       <property name="text">
-        <string>Services manager</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QPushButton" name="system_info_button">
        <property name="text">
@@ -52,9 +45,16 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="software_repos_button">
+      <widget class="QPushButton" name="apt_settings_button">
        <property name="text">
-        <string>Software repositories</string>
+        <string>Apt settings</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="services_manager_button">
+       <property name="text">
+        <string>Services manager</string>
        </property>
       </widget>
      </item>
@@ -136,7 +136,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>0</y>
+      <y>10</y>
       <width>181</width>
       <height>251</height>
      </rect>
