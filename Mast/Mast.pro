@@ -10,13 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mastwindow.cpp
+    mastwindow.cpp \
+    system_info_form.cpp
 
 HEADERS += \
-    mastwindow.h
+    mastwindow.h \
+    system_info_form.h
 
 FORMS += \
-    mastwindow.ui
+    mastwindow.ui \
+    system_info_form.ui
 
 TRANSLATIONS += \
     Mast_en_US.ts
