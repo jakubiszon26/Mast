@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>642</width>
-    <height>303</height>
+    <width>467</width>
+    <height>293</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>621</width>
+      <width>261</width>
       <height>86</height>
      </rect>
     </property>
@@ -65,7 +65,7 @@
      <rect>
       <x>-10</x>
       <y>120</y>
-      <width>671</width>
+      <width>281</width>
       <height>20</height>
      </rect>
     </property>
@@ -91,7 +91,7 @@
      <rect>
       <x>10</x>
       <y>160</y>
-      <width>621</width>
+      <width>261</width>
       <height>86</height>
      </rect>
     </property>
@@ -124,12 +124,25 @@
      <rect>
       <x>-10</x>
       <y>250</y>
-      <width>671</width>
+      <width>281</width>
       <height>20</height>
      </rect>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mast_image">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>0</y>
+      <width>181</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -138,7 +151,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>642</width>
+     <width>467</width>
      <height>21</height>
     </rect>
    </property>
