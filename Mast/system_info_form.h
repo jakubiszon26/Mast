@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::System_Info_Form *ui;
+    void display_system_info();
+
 };
 
 #endif // SYSTEM_INFO_FORM_H
