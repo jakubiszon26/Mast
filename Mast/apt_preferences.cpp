@@ -26,6 +26,24 @@ void Apt_Preferences::on_listWidget_itemClicked(QListWidgetItem *item)
 {
     //save selected item text in variable
     selectedFile = item->text();
+    QFile file(selectedFile);
+    QString line;
+    bool isOn = false;
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream in(&file);
+    do{
+        line = in.readLine();
+        if(line.startsWith("deb")){
+             isOn = true;
+        }
+    }while (!line.isNull());
+
+    file.close();
+    if(isOn){
+        ui->on_and_off_button->setText("turn off");
+    }else{
+        ui->on_and_off_button->setText("turn on");
+    }
 }
 
 void Apt_Preferences::on_on_and_off_button_clicked()
@@ -55,10 +73,12 @@ void Apt_Preferences::on_on_and_off_button_clicked()
         QString output = "#" + repo;
         qDebug() << "writing " + output;
         file.write(output.toUtf8());
+        ui->on_and_off_button->setText("turn on");
     }else{
         QString output = repo.remove(0, 1);
         qDebug() << "writing " + output;
         file.write(output.toUtf8());
+        ui->on_and_off_button->setText("turn off");
     }
     file.close();
 
