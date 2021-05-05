@@ -1,11 +1,19 @@
 #include "mastwindow.h"
 #include "ui_mastwindow.h"
 #include <qpixmap.h>
+#include <unistd.h>
+#include <QMessageBox>
 MastWindow::MastWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MastWindow)
 {
     ui->setupUi(this);
+    if (getuid()) {
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","Mast must be run as root. Most of things won't work without root privileges");
+        messageBox.setFixedSize(500,200);
+        messageBox.show();
+    }
     QPixmap picture(":/assets/images/mast_img.jpg");
     int width = ui->mast_image->width();
     int height = ui->mast_image->height();

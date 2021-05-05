@@ -1,6 +1,7 @@
 #include "mastwindow.h"
-
+#include <unistd.h>
 #include <QApplication>
+#include <QMessageBox>
 
 int main(int argc, char *argv[])
 {
