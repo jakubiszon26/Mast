@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "system_info_form.h"
 #include "apt_preferences.h"
+#include "services_manager.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MastWindow; }
 QT_END_NAMESPACE
@@ -21,10 +22,13 @@ private slots:
 
     void on_apt_settings_button_clicked();
 
+    void on_services_manager_button_clicked();
+
 private:
     Ui::MastWindow *ui;
     System_Info_Form systemInfoForm;
     Apt_Preferences aptPreferences;
+    services_manager servicesManager;
 
 };
 #endif // MASTWINDOW_H
