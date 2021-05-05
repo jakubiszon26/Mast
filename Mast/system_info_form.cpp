@@ -23,12 +23,33 @@ void System_Info_Form::display_system_info(){
         qDebug() << "error opening file: " << file.error();
         return;
     }
-
+    QString line;
     QTextStream instream(&file);
-    while(!instream.atEnd()){
-        QString line = instream.readLine();
-        ui->output_container->insertPlainText(line + "\n");
-    }
+    do{
+        line = instream.readLine();
+        if(line.startsWith("NAME=")){
+            ui->output_container->insertPlainText("System - " + line.replace("NAME=", "") + "\n");
+        }
+        else if(line.startsWith("VERSION=")){
+            ui->output_container->insertPlainText("System Version - " + line.replace("VERSION=", "") + "\n");
+        }
+        else if(line.startsWith("ID_LIKE=")){
+            ui->output_container->insertPlainText("Based on - " + line.replace("ID_LIKE=", "") + "\n");
+        }
+        else if(line.startsWith("HOME_URL=")){
+            ui->output_container->insertPlainText("Website - " + line.replace("HOME_URL=", "") + "\n");
+        }
+    } while (!line.isNull());
+
     file.close();
+    QFile kernelFile("/proc/version");
+    QTextStream kernelInstream(&kernelFile);
+    if(!kernelFile.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "error opening file: " << file.error();
+        return;
+    }
+    line = kernelInstream.readLine();
+    ui->output_container->insertPlainText("\nKernel info - " + line);
 
 }
