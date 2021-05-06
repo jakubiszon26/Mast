@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>376</width>
+    <width>465</width>
     <height>425</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>10</y>
+     <y>50</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -40,7 +40,7 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>50</y>
+     <y>90</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -53,13 +53,36 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>90</y>
+     <y>130</y>
      <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Remove service</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="search_input">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>111</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="search_button">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>10</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>search</string>
    </property>
   </widget>
  </widget>

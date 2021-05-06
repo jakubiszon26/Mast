@@ -15,6 +15,9 @@ public:
     explicit services_manager(QWidget *parent = nullptr);
     ~services_manager();
 
+private slots:
+    void on_search_button_clicked();
+
 private:
     Ui::services_manager *ui;
 };
