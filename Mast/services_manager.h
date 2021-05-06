@@ -17,6 +17,7 @@ public:
 
 private slots:
     void on_search_button_clicked();
+    void show_services();
 
 private:
     Ui::services_manager *ui;
