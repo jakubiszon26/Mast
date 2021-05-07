@@ -1,6 +1,9 @@
 #include "services_manager.h"
 #include "ui_services_manager.h"
 #include <QDirIterator>
+#include <QListWidgetItem>
+#include <QProcess>
+#include <QFileDialog>
 
 void show_services();
 
@@ -19,7 +22,6 @@ services_manager::~services_manager()
 
 void services_manager::on_search_button_clicked()
 {
-    show_services();
     QString query = ui->search_input->text();
     for(int i=0; i < ui->servicesList->count(); i++)
     {
@@ -37,5 +39,20 @@ void services_manager::show_services(){
     while(iterator.hasNext()){
         ui->servicesList->addItem(iterator.next());
     }
+}
+
+
+void services_manager::on_enable_button_clicked()
+{
+    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
+    qDebug() << "executing command to enable service: " + serviceName;
+    QProcess::execute("systemctl", {"enable", serviceName });
+    qDebug() << "done";
+}
+
+
+void services_manager::on_servicesList_currentItemChanged(QListWidgetItem *current)
+{
+    selectedService = current->text();
 }
 

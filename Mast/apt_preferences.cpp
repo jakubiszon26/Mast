@@ -13,7 +13,7 @@ Apt_Preferences::Apt_Preferences(QWidget *parent) :
     //show aditional repos in list
     QDirIterator iterator("/etc/apt/sources.list.d/");
     while(iterator.hasNext()){
-    ui->listWidget->addItem(iterator.next());
+        ui->listWidget->addItem(iterator.next());
     }
 }
 
@@ -34,7 +34,7 @@ void Apt_Preferences::on_listWidget_itemClicked(QListWidgetItem *item)
     do{
         line = in.readLine();
         if(line.startsWith("deb")){
-             isOn = true;
+            isOn = true;
         }
     }while (!line.isNull());
 
@@ -48,24 +48,24 @@ void Apt_Preferences::on_listWidget_itemClicked(QListWidgetItem *item)
 
 void Apt_Preferences::on_on_and_off_button_clicked()
 {
-  bool isOn = true;
-  QString line, repo;
-  QFile file(selectedFile);
+    bool isOn = true;
+    QString line, repo;
+    QFile file(selectedFile);
 
-  file.open(QIODevice::ReadOnly | QIODevice::Text);
-  QTextStream in(&file);
-  do{
-      line = in.readLine();
-      if(line.startsWith("deb")){
-           repo = line;
-           qDebug() << "found "+line.toUtf8();
-           isOn = true;
-      }else if (line.startsWith("#deb") || line.startsWith("# deb")){
-         isOn = false;
-         repo = line;
-         qDebug() << "found" +line.toUtf8();
-      }
-  }while (!line.isNull());
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream in(&file);
+    do{
+        line = in.readLine();
+        if(line.startsWith("deb")){
+            repo = line;
+            qDebug() << "found "+line.toUtf8();
+            isOn = true;
+        }else if (line.startsWith("#deb") || line.startsWith("# deb")){
+            isOn = false;
+            repo = line;
+            qDebug() << "found" +line.toUtf8();
+        }
+    }while (!line.isNull());
 
     file.close();
     file.open(QFile::WriteOnly);
