@@ -16,6 +16,9 @@ public:
     ~Hardware_Info();
     void display_cpu_info();
 
+private slots:
+    void on_show_board_serial_button_clicked();
+
 private:
     Ui::Hardware_Info *ui;
 };

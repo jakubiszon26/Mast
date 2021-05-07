@@ -74,4 +74,28 @@ void Hardware_Info::display_cpu_info(){
     line = bios_version_file.readAll();
     ui->bios_version->setText(line);
     bios_version_file.close();
+
+    //board serial
+    QFile board_serial_file("/sys/devices/virtual/dmi/id/board_serial");
+    QTextStream board_serial_in(&board_serial_file);
+    if(!board_serial_file.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "error opening file: " << file.error();
+        return;
+    }
+    line = board_serial_file.readAll();
+    ui->board_serial->setText(line);
+    board_serial_file.close();
 }
+
+void Hardware_Info::on_show_board_serial_button_clicked()
+{
+    if(ui->board_serial->echoMode() == QLineEdit::Password){
+        ui->board_serial->setEchoMode(QLineEdit::Normal);
+        ui->show_board_serial_button->setText("hide");
+    }else{
+        ui->board_serial->setEchoMode(QLineEdit::Password);
+        ui->show_board_serial_button->setText("show");
+    }
+}
+
