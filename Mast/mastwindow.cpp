@@ -45,3 +45,9 @@ void MastWindow::on_services_manager_button_clicked()
     servicesManager.show();
 }
 
+
+void MastWindow::on_hardware_info_button_clicked()
+{
+    hardwareInfo.show();
+}
+
