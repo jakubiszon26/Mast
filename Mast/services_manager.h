@@ -27,6 +27,10 @@ private slots:
 
     void on_restart_button_clicked();
 
+    void on_start_button_clicked();
+
+    void on_stop_button_clicked();
+
 private:
     Ui::services_manager *ui;
 };

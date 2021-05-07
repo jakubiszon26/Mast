@@ -71,3 +71,21 @@ void services_manager::on_restart_button_clicked()
     qDebug() << "done";
 }
 
+
+void services_manager::on_start_button_clicked()
+{
+    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
+    qDebug() << "executing command to start service: " + serviceName;
+    QProcess::execute("systemctl", {"start", serviceName });
+    qDebug() << "done";
+}
+
+
+void services_manager::on_stop_button_clicked()
+{
+    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
+    qDebug() << "executing command to stop service: " + serviceName;
+    QProcess::execute("systemctl", {"stop", serviceName });
+    qDebug() << "done";
+}
+
