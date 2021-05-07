@@ -4,6 +4,7 @@
 #include <QListWidgetItem>
 #include <QProcess>
 #include <QFileDialog>
+#include <QMessageBox>
 
 void show_services();
 void systemctl();
@@ -54,6 +55,10 @@ void services_manager::systemctl(QString arg){
     qDebug() << "executing command to " + arg + " service: " + serviceName;
     QProcess::execute("systemctl", {arg, serviceName });
     qDebug() << "done";
+    QMessageBox msg;
+    msg.setText("Done");
+    msg.exec();
+
 }
 
 void services_manager::on_enable_button_clicked()
