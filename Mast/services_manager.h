@@ -20,10 +20,12 @@ public:
 private slots:
     void on_search_button_clicked();
     void show_services();
-
     void on_enable_button_clicked();
-
     void on_servicesList_currentItemChanged(QListWidgetItem *current);
+
+    void on_disable_button_clicked();
+
+    void on_restart_button_clicked();
 
 private:
     Ui::services_manager *ui;

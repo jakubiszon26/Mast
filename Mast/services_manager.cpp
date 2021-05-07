@@ -41,7 +41,6 @@ void services_manager::show_services(){
     }
 }
 
-
 void services_manager::on_enable_button_clicked()
 {
     QString serviceName = selectedService.replace("/lib/systemd/system/", "");
@@ -50,9 +49,25 @@ void services_manager::on_enable_button_clicked()
     qDebug() << "done";
 }
 
-
 void services_manager::on_servicesList_currentItemChanged(QListWidgetItem *current)
 {
     selectedService = current->text();
+}
+
+void services_manager::on_disable_button_clicked()
+{
+    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
+    qDebug() << "executing command to enable service: " + serviceName;
+    QProcess::execute("systemctl", {"disable", serviceName });
+    qDebug() << "done";
+}
+
+
+void services_manager::on_restart_button_clicked()
+{
+    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
+    qDebug() << "executing command to restart service: " + serviceName;
+    QProcess::execute("systemctl", {"restart", serviceName });
+    qDebug() << "done";
 }
 
