@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     apt_preferences.cpp \
+    hardware_info.cpp \
     main.cpp \
     mastwindow.cpp \
     services_manager.cpp \
@@ -17,12 +18,14 @@ SOURCES += \
 
 HEADERS += \
     apt_preferences.h \
+    hardware_info.h \
     mastwindow.h \
     services_manager.h \
     system_info_form.h
 
 FORMS += \
     apt_preferences.ui \
+    hardware_info.ui \
     mastwindow.ui \
     services_manager.ui \
     system_info_form.ui
