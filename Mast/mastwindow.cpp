@@ -39,3 +39,9 @@ void MastWindow::on_apt_settings_button_clicked()
 {
     aptPreferences.show();
 }
+
+void MastWindow::on_services_manager_button_clicked()
+{
+    servicesManager.show();
+}
+
