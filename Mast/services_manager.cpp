@@ -36,10 +36,17 @@ void services_manager::on_search_button_clicked()
 
 void services_manager::show_services(){
     QDirIterator iterator("/lib/systemd/system/");
-    ui->servicesList->clear();
-    while(iterator.hasNext()){
-        ui->servicesList->addItem(iterator.next());
-    }
+       ui->servicesList->clear();
+       while(iterator.hasNext()){
+           const auto current = iterator.next();
+           if(current.contains("service"))
+           ui->servicesList->addItem(current );
+       }
+}
+
+void services_manager::on_servicesList_currentItemChanged(QListWidgetItem *current)
+{
+    selectedService = current->text();
 }
 
 void services_manager::systemctl(QString arg){
@@ -52,11 +59,6 @@ void services_manager::systemctl(QString arg){
 void services_manager::on_enable_button_clicked()
 {
     systemctl("enable");
-}
-
-void services_manager::on_servicesList_currentItemChanged(QListWidgetItem *current)
-{
-    selectedService = current->text();
 }
 
 void services_manager::on_disable_button_clicked()
@@ -81,6 +83,9 @@ void services_manager::on_stop_button_clicked()
 {
     systemctl("stop");
 }
+
+
+
 
 
 
