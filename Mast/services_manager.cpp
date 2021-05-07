@@ -6,6 +6,7 @@
 #include <QFileDialog>
 
 void show_services();
+void systemctl();
 
 services_manager::services_manager(QWidget *parent) :
     QWidget(parent),
@@ -41,12 +42,16 @@ void services_manager::show_services(){
     }
 }
 
+void services_manager::systemctl(QString arg){
+    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
+    qDebug() << "executing command to " + arg + " service: " + serviceName;
+    QProcess::execute("systemctl", {arg, serviceName });
+    qDebug() << "done";
+}
+
 void services_manager::on_enable_button_clicked()
 {
-    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
-    qDebug() << "executing command to enable service: " + serviceName;
-    QProcess::execute("systemctl", {"enable", serviceName });
-    qDebug() << "done";
+    systemctl("enable");
 }
 
 void services_manager::on_servicesList_currentItemChanged(QListWidgetItem *current)
@@ -56,36 +61,26 @@ void services_manager::on_servicesList_currentItemChanged(QListWidgetItem *curre
 
 void services_manager::on_disable_button_clicked()
 {
-    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
-    qDebug() << "executing command to enable service: " + serviceName;
-    QProcess::execute("systemctl", {"disable", serviceName });
-    qDebug() << "done";
+    systemctl("disable");
 }
 
 
 void services_manager::on_restart_button_clicked()
 {
-    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
-    qDebug() << "executing command to restart service: " + serviceName;
-    QProcess::execute("systemctl", {"restart", serviceName });
-    qDebug() << "done";
+    systemctl("restart");
 }
 
 
 void services_manager::on_start_button_clicked()
 {
-    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
-    qDebug() << "executing command to start service: " + serviceName;
-    QProcess::execute("systemctl", {"start", serviceName });
-    qDebug() << "done";
+    systemctl("start");
 }
 
 
 void services_manager::on_stop_button_clicked()
 {
-    QString serviceName = selectedService.replace("/lib/systemd/system/", "");
-    qDebug() << "executing command to stop service: " + serviceName;
-    QProcess::execute("systemctl", {"stop", serviceName });
-    qDebug() << "done";
+    systemctl("stop");
 }
+
+
 

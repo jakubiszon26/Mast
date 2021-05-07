@@ -30,7 +30,7 @@ private slots:
     void on_start_button_clicked();
 
     void on_stop_button_clicked();
-
+    void systemctl(QString arg);
 private:
     Ui::services_manager *ui;
 };
