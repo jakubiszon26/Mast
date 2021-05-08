@@ -51,3 +51,9 @@ void MastWindow::on_hardware_info_button_clicked()
     hardwareInfo.show();
 }
 
+
+void MastWindow::on_bootloader_button_clicked()
+{
+    bootloaderForm.show();
+}
+
