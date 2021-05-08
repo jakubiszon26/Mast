@@ -35,7 +35,6 @@ void bootloader::install_grub(QString partition){
     QProcess p;
     p.execute("grub-install", {partition});
     p.waitForFinished();
-    ui->output->insertPlainText(p.readAllStandardOutput());
     qDebug() << "done";
     QMessageBox msg;
     msg.setText("Done");
@@ -47,10 +46,8 @@ void bootloader::install_refind(){
     QProcess p;
     p.execute("apt", {"install", "refind", "-y"});
     p.waitForFinished();
-    ui->output->insertPlainText(p.readAllStandardOutput());
     p.execute("refind-install", {"--yes"});
     p.waitForFinished();
-    ui->output->insertPlainText(p.readAllStandardOutput());
     qDebug() << "done";
     QMessageBox msg;
     msg.setText("Done");
