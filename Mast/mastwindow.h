@@ -6,6 +6,8 @@
 #include "apt_preferences.h"
 #include "services_manager.h"
 #include "hardware_info.h"
+#include "bootloader.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MastWindow; }
 QT_END_NAMESPACE
@@ -27,12 +29,14 @@ private slots:
 
     void on_hardware_info_button_clicked();
 
+    void on_bootloader_button_clicked();
+
 private:
     Ui::MastWindow *ui;
     System_Info_Form systemInfoForm;
     Apt_Preferences aptPreferences;
     services_manager servicesManager;
     Hardware_Info hardwareInfo;
-
+    bootloader bootloaderForm;
 };
 #endif // MASTWINDOW_H
