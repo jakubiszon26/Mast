@@ -7,6 +7,7 @@
 #include "services_manager.h"
 #include "hardware_info.h"
 #include "bootloader.h"
+#include "hostname.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MastWindow; }
@@ -31,6 +32,8 @@ private slots:
 
     void on_bootloader_button_clicked();
 
+    void on_hostname_button_clicked();
+
 private:
     Ui::MastWindow *ui;
     System_Info_Form systemInfoForm;
@@ -38,5 +41,6 @@ private:
     services_manager servicesManager;
     Hardware_Info hardwareInfo;
     bootloader bootloaderForm;
+    Hostname hostnames;
 };
 #endif // MASTWINDOW_H

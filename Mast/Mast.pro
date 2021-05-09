@@ -12,6 +12,7 @@ SOURCES += \
     apt_preferences.cpp \
     bootloader.cpp \
     hardware_info.cpp \
+    hostname.cpp \
     main.cpp \
     mastwindow.cpp \
     services_manager.cpp \
@@ -21,6 +22,7 @@ HEADERS += \
     apt_preferences.h \
     bootloader.h \
     hardware_info.h \
+    hostname.h \
     mastwindow.h \
     services_manager.h \
     system_info_form.h
@@ -29,6 +31,7 @@ FORMS += \
     apt_preferences.ui \
     bootloader.ui \
     hardware_info.ui \
+    hostname.ui \
     mastwindow.ui \
     services_manager.ui \
     system_info_form.ui

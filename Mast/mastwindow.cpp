@@ -57,3 +57,9 @@ void MastWindow::on_bootloader_button_clicked()
     bootloaderForm.show();
 }
 
+
+void MastWindow::on_hostname_button_clicked()
+{
+    hostnames.show();
+}
+
