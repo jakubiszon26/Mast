@@ -22,7 +22,6 @@ bootloader::bootloader(QWidget *parent) :
 
         }
     }while (!line.isNull());
-
 }
 
 bootloader::~bootloader()
@@ -31,23 +30,33 @@ bootloader::~bootloader()
 }
 
 void bootloader::install_refind(){
-    QMessageBox warning;
-    warning.setText("Installing bootloader is experimental feature, please report any issues");
-    warning.exec();
-    qDebug() << "installing refind";
+    QMessageBox whatDoing;
+    whatDoing.setText("please make sure you have internet connection");
+    whatDoing.exec();
     QProcess p;
+    whatDoing.setText("apt update...");
+    whatDoing.exec();
+    p.execute("apt", {"update", "-y"});
+    p.waitForFinished();
+    whatDoing.setText("executing \"apt install refind -y\"");
+    whatDoing.exec();
     p.execute("apt", {"install", "refind", "-y"});
     p.waitForFinished();
+    whatDoing.setText("installing refind");
+    whatDoing.exec();
     p.execute("refind-install", {"--yes"});
     p.waitForFinished();
-    qDebug() << "done";
-    QMessageBox msg;
-    msg.setText("Done");
-    msg.exec();
+    whatDoing.setText("Done");
+    whatDoing.exec();
 }
 
 void bootloader::on_install_button_clicked()
 {
+    QMessageBox warning;
+    warning.setIcon(QMessageBox::Warning);
+    warning.setText("Installing bootloader is experimental feature. Please report any issues");
+    warning.exec();
+
     if(ui->bootloader_choose->currentText() == "Refind"){
         install_refind();
     }
