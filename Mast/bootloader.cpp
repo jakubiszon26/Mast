@@ -30,18 +30,10 @@ bootloader::~bootloader()
     delete ui;
 }
 
-void bootloader::install_grub(QString partition){
-    qDebug() << "installing grub on: " + partition;
-    QProcess p;
-    p.execute("grub-install", {partition});
-    p.waitForFinished();
-    qDebug() << "done";
-    QMessageBox msg;
-    msg.setText("Done");
-    msg.exec();
-}
-
 void bootloader::install_refind(){
+    QMessageBox warning;
+    warning.setText("Installing bootloader is experimental feature, please report any issues");
+    warning.exec();
     qDebug() << "installing refind";
     QProcess p;
     p.execute("apt", {"install", "refind", "-y"});
@@ -56,9 +48,7 @@ void bootloader::install_refind(){
 
 void bootloader::on_install_button_clicked()
 {
-    /*if(ui->bootloader_choose->currentText() == "Grub"){
-        install_grub(bootPartition);
-    }else*/ if(ui->bootloader_choose->currentText() == "Refind"){
+    if(ui->bootloader_choose->currentText() == "Refind"){
         install_refind();
     }
 }

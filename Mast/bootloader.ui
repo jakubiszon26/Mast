@@ -23,12 +23,17 @@
      </item>
      <item>
       <property name="text">
-       <string>systemd-boot</string>
+       <string>Grub (comming soon)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Grub</string>
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string/>
       </property>
      </item>
     </widget>

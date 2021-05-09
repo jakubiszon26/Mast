@@ -18,7 +18,6 @@ public:
 
 private slots:
     void on_install_button_clicked();
-    void install_grub(QString partition);
     void install_refind();
 
 private:
