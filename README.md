@@ -2,8 +2,8 @@
 ## _Mint Additional Setup Tool_
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
-[!](https://img.shields.io/badge/Qt-6.0-green.svg)
-[!](https://img.shields.io/badge/Qt-qmake-green.svg)
+[(https://img.shields.io/badge/Qt-6.0-green.svg)]
+[(https://img.shields.io/badge/Qt-qmake-green.svg)]
 ## what is Mast?
 Mast is setup tool for Linux Mint configuration which provides this functionalities (for now in version 1.0 alpha)
 
