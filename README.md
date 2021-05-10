@@ -39,7 +39,7 @@ $ ./Mast.sh
 
 ## Required depedencies to run Mast
 1. [pkexec](https://www.freedesktop.org/software/polkit/docs/0.105/pkexec.1.html)
-2. [qt6](https://doc.qt.io/qt-6/linux.html)
+2. [qt6-base](https://doc.qt.io/qt-6/linux.html)
 
  ## Contribute
  If you want to help develop this project, please follow the steps below
