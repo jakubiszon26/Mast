@@ -48,7 +48,7 @@ $ ./Mast.sh
  3. Now you can start coding
  4. If you have finished you need to create pull request (describe exactly what you have added or changed so that we can easily confirm and accept it)
  5. if there are any problems you can write to our community on signal -  [here](https://signal.group/#CjQKIPk8nX35H14A8PIgy-5p40zxI8e8fquxCm1i2Wg1lyY9EhBn3vLNkKDft0WaVWummAYZ)
- 6. 
+ 
   You are free to create your own ideas instead of fixing bugs and issues but we do not promise that your changes will be accepted 
  
  
