@@ -14,6 +14,11 @@ MastWindow::MastWindow(QWidget *parent)
         messageBox.setFixedSize(500,200);
         messageBox.show();
     }
+    //warning for alpha version
+    QMessageBox alphaWarning;
+    alphaWarning.setText("this is alpha version. Please report any issues");
+    alphaWarning.exec();
+
     QPixmap picture(":/assets/images/mast_img.jpg");
     int width = ui->mast_image->width();
     int height = ui->mast_image->height();
