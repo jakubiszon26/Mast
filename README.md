@@ -22,18 +22,18 @@ Mast is setup tool for Linux Mint configuration which provides this functionalit
 1. First download latest Mast release from github releases here: [Download](https://github.com/jakubiszon26/Mast/releases/tag/v1.0-alpha)
 2. Then unpack the archive 
 ```bash
-$ tar -xf "Mast 1.0 alpha.tar.xz"
+tar -xf Mast.1.0.alpha.tar.xz
 ```
 3. Make Mast executable
 ```bash
-$ cd "Mast 1.0 alpha"
-$ chmod +x Mast.sh
-$ cd bin
-$ chmod +x Mast
+cd "Mast 1.0 alpha"
+chmod +x Mast.sh
+cd bin
+chmod +x Mast
 ```
 4. run Mast.sh
 ```bash
-$ ./Mast.sh
+./Mast.sh
 ```
 5. Authenticate with your password and Mast is ready to go
 
