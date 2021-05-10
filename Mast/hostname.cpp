@@ -52,6 +52,6 @@ void Hostname::on_set_button_clicked()
     temporaryFile.rename("/etc/hosts");
     QMessageBox doneMessage;
     doneMessage.setText("you must restart your computer for the changes to take effect");
-    doneMessage.show();
+    doneMessage.exec();
 }
 
