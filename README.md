@@ -2,7 +2,8 @@
 ## _Mint Additional Setup Tool_
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
-[![GitHub tag](https://img.shields.io/github/tag/Naereen/StrapDown.js.svg)](https://github.com/jakubiszon26/Mast/releases/tag/v1.0-alpha)
+[](https://img.shields.io/badge/Qt-6.0-green.svg)
+[](https://img.shields.io/badge/Qt-qmake-green.svg)
 ## what is Mast?
 Mast is setup tool for Linux Mint configuration which provides this functionalities (for now in version 1.0 alpha)
 
@@ -12,6 +13,10 @@ Mast is setup tool for Linux Mint configuration which provides this functionalit
 - Hardware info
 - Bootloader (install refind)
 - Change hostname
+
+# Screenshot
+![Alt text](screenshot.png)
+
 
 # Installing Mast
 1. First download latest Mast release from github releases here: [Download](https://github.com/jakubiszon26/Mast/releases/tag/v1.0-alpha)
