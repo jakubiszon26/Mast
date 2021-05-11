@@ -19,6 +19,7 @@ void Hardware_Info::display_cpu_info(){
     bool model_name;
     bool brand_name;
     QString line;
+
     //cpu info
     QFile file("/proc/cpuinfo");
     if(!file.open(QIODevice::ReadOnly))
@@ -40,52 +41,16 @@ void Hardware_Info::display_cpu_info(){
     file.close();
 
     //brand of laptop/pc
-    QFile pc_vendor_file("/sys/devices/virtual/dmi/id/board_vendor");
-    QTextStream in(&pc_vendor_file);
-    if(!pc_vendor_file.open(QIODevice::ReadOnly))
-    {
-        qDebug() << "error opening file: " << file.error();
-        return;
-    }
-    line = pc_vendor_file.readLine();
-    ui->pc_vendor->setText(line);
-    pc_vendor_file.close();
+    ui->pc_vendor->setText(read_info_from_file("/sys/devices/virtual/dmi/id/board_vendor"));
 
     //motherboard version
-    QFile motherboard_name_file("/sys/devices/virtual/dmi/id/board_name");
-    QTextStream motherboard_in(&motherboard_name_file);
-    if(!motherboard_name_file.open(QIODevice::ReadOnly))
-    {
-        qDebug() << "error opening file: " << file.error();
-        return;
-    }
-    line = motherboard_name_file.readAll();
-    ui->motherboard->setText(line);
-    motherboard_name_file.close();
+    ui->motherboard->setText(read_info_from_file("/sys/devices/virtual/dmi/id/board_name"));
 
     //BIOS version
-    QFile bios_version_file("/sys/devices/virtual/dmi/id/bios_version");
-    QTextStream bios_in(&motherboard_name_file);
-    if(!bios_version_file.open(QIODevice::ReadOnly))
-    {
-        qDebug() << "error opening file: " << file.error();
-        return;
-    }
-    line = bios_version_file.readAll();
-    ui->bios_version->setText(line);
-    bios_version_file.close();
+    ui->bios_version->setText(read_info_from_file("/sys/devices/virtual/dmi/id/bios_version"));
 
     //board serial
-    QFile board_serial_file("/sys/devices/virtual/dmi/id/board_serial");
-    QTextStream board_serial_in(&board_serial_file);
-    if(!board_serial_file.open(QIODevice::ReadOnly))
-    {
-        qDebug() << "error opening file: " << file.error();
-        return;
-    }
-    line = board_serial_file.readAll();
-    ui->board_serial->setText(line);
-    board_serial_file.close();
+    ui->board_serial->setText(read_info_from_file("/sys/devices/virtual/dmi/id/board_serial"));
 }
 
 void Hardware_Info::on_show_board_serial_button_clicked()
@@ -99,3 +64,14 @@ void Hardware_Info::on_show_board_serial_button_clicked()
     }
 }
 
+QString Hardware_Info::read_info_from_file(QString filePath){
+    QFile file(filePath);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "error opening file: " << file.error();
+        return "error - Make sure Mast is running as root";
+    }
+    QString info = file.readAll();
+    file.close();
+    return info;
+}
