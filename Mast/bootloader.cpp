@@ -10,18 +10,30 @@ bootloader::bootloader(QWidget *parent) :
 {
     ui->setupUi(this);
     //search for boot partition
-    QFile file("/etc/fstab");
+    QFile fstabFile("/etc/fstab");
     QString line;
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QTextStream in(&file);
+    fstabFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream fstabFileStream(&fstabFile);
     do{
-        line = in.readLine();
+        line = fstabFileStream.readLine();
         if(line.startsWith("# /boot/efi")){
-            QString line_removed_left_side = line.replace("# /boot/efi was on ", "");
-            bootPartition = line_removed_left_side.replace(" during installation", "");
-
+            /* example:
+                # /boot/efi was on /dev/nvme0n1p1 during installation
+                UUID=7038-5BN7  /boot/efi       vfat    umask=0077      0       1
+             */
+            //we need only /dev/nvme0n1p1 (in this example)
+            QString lineRemovedLeftSide = line.replace("# /boot/efi was on ", "");
+            bootPartition = lineRemovedLeftSide.replace(" during installation", "");
         }
     }while (!line.isNull());
+
+    //show error if partition not found
+    if(bootPartition.length() == 0){
+        QMessageBox partitionNotFoundError;
+        partitionNotFoundError.critical(0,"Error", "Mast couldn't found your boot partition in fstab comment. Have you edited fstab manually?");
+        partitionNotFoundError.setFixedSize(500,200);
+        partitionNotFoundError.show();
+    }
 }
 
 bootloader::~bootloader()
