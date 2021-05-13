@@ -52,3 +52,5 @@ chmod +x Mast
   You are free to create your own ideas instead of fixing bugs and issues but we do not promise that your changes will be accepted 
  
  
+## resources used
+dark theme - [Diffnes by. DevSec Studio](https://qss-stock.devsecstudio.com/templates/components/components3/diffnes/Diffnes.rar) 
