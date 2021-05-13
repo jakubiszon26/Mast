@@ -25,17 +25,7 @@ Apt_Preferences::~Apt_Preferences()
 void Apt_Preferences::on_listWidget_itemClicked(QListWidgetItem *item)
 {
     selectedFile = item->text();
-    ui->repositories_in_file_list->clear();
-    QString line;
-    QFile repositoriesFile(item->text());
-    repositoriesFile.open(QFile::ReadOnly);
-    QTextStream repositoriesFileStream(&repositoriesFile);
-    do{
-        line = repositoriesFileStream.readLine();
-        if(line.startsWith("deb") || line.startsWith("#deb") || line.startsWith("# deb")){
-            ui->repositories_in_file_list->addItem(line);
-        }
-    }while(!line.isNull());
+    refresh_repositories_list();
 }
 
 void Apt_Preferences::on_repositories_in_file_list_itemClicked(QListWidgetItem *item)
@@ -53,6 +43,7 @@ void Apt_Preferences::on_repositories_in_file_list_itemClicked(QListWidgetItem *
 void Apt_Preferences::on_on_and_off_button_clicked()
 {
     write_to_file();
+    refresh_repositories_list();
 }
 
 void Apt_Preferences::write_to_file(){
@@ -69,25 +60,36 @@ void Apt_Preferences::write_to_file(){
     QTextStream temporaryFileStream(&tempFile);
     do{
         line = orginalFileStream.readLine();
-        qDebug() << "line: " + line;
         if(line == "#" + selectedRepo){
             tempFile.write(line.remove(0,1).toUtf8() + "\n");
             ui->on_and_off_button->setText("turn off");
-            qDebug() << "turn on";
         }else if(line == selectedRepo){
             tempFile.write("#" + line.toUtf8() + "\n");
             ui->on_and_off_button->setText("turn on");
-            qDebug() << "turn off";
         }
         else{
             tempFile.write(line.toUtf8() + "\n");
-            qDebug() << "zwykła linia";
         }
     }
     while (!line.isNull());
     orginalFile.remove();
     tempFile.rename(selectedFile);
     tempFile.close();
+}
+
+void Apt_Preferences::refresh_repositories_list(){
+
+    ui->repositories_in_file_list->clear();
+    QString line;
+    QFile repositoriesFile(selectedFile);
+    repositoriesFile.open(QFile::ReadOnly);
+    QTextStream repositoriesFileStream(&repositoriesFile);
+    do{
+        line = repositoriesFileStream.readLine();
+        if(line.startsWith("deb") || line.startsWith("#deb") || line.startsWith("# deb")){
+            ui->repositories_in_file_list->addItem(line);
+        }
+    }while(!line.isNull());
 }
 
 
