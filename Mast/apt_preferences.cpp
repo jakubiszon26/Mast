@@ -3,6 +3,9 @@
 #include <QDirIterator>
 #include <QListWidgetItem>
 #include<QDebug>
+#include <QProcess>
+#include <QMessageBox>
+
 
 Apt_Preferences::Apt_Preferences(QWidget *parent) :
     QWidget(parent),
@@ -92,5 +95,21 @@ void Apt_Preferences::refresh_repositories_list(){
     }while(!line.isNull());
 }
 
-
+void Apt_Preferences::on_ppa_submit_button_clicked()
+{
+    QString ppa = ui->insert_ppa->text();
+    if(ppa.startsWith("ppa:")){
+        QMessageBox warning;
+        warning.setText("you should insert this without \"ppa:\"");
+        warning.exec();
+    }else{
+        QMessageBox message;
+        QProcess p;
+        p.start("add-apt-repository", {"ppa:" + ppa, "-y"});
+        p.waitForFinished();
+        QString output(p.readAllStandardOutput());
+        message.setText(output);
+        message.exec();
+    }
+}
 

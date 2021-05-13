@@ -25,6 +25,8 @@ private slots:
     void on_repositories_in_file_list_itemClicked(QListWidgetItem *item);
     void write_to_file();
     void refresh_repositories_list();
+    void on_ppa_submit_button_clicked();
+
 private:
     Ui::Apt_Preferences *ui;
 };
