@@ -44,7 +44,7 @@ chmod +x Mast
  ## Contribute
  If you want to help develop this project, please follow the steps below
  1. Check for issues [here](https://github.com/jakubiszon26/Mast/issues)
- 2. If you found a bug you are interested in and want to fix it, you can fork the repository
+ 2. If you found a bug you are interested in and want to fix it, you can fork the repository and create branch
  3. Now you can start coding
  4. If you have finished you need to create pull request (describe exactly what you have added or changed so that we can easily confirm and accept it)
  5. if there are any problems you can write to our community on signal -  [here](https://signal.group/#CjQKIPk8nX35H14A8PIgy-5p40zxI8e8fquxCm1i2Wg1lyY9EhBn3vLNkKDft0WaVWummAYZ)
