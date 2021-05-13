@@ -10,10 +10,10 @@ Apt_Preferences::Apt_Preferences(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->listWidget->clear();
-    //show aditional repos in list
-    QDirIterator repositoriesIterator("/etc/apt/sources.list.d/");
-    while(repositoriesIterator.hasNext()){
-        ui->listWidget->addItem(repositoriesIterator.next());
+    //show aditional repos files in list
+    QDirIterator repositoriesFilesIterator("/etc/apt/sources.list.d/");
+    while(repositoriesFilesIterator.hasNext()){
+        ui->listWidget->addItem(repositoriesFilesIterator.next());
     }
 }
 
@@ -24,63 +24,71 @@ Apt_Preferences::~Apt_Preferences()
 
 void Apt_Preferences::on_listWidget_itemClicked(QListWidgetItem *item)
 {
-    //save selected item text (path to repo file) in to variable
     selectedFile = item->text();
-    QFile file(selectedFile);
+    ui->repositories_in_file_list->clear();
     QString line;
-    bool isOn = false;
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QTextStream in(&file);
+    QFile repositoriesFile(item->text());
+    repositoriesFile.open(QFile::ReadOnly);
+    QTextStream repositoriesFileStream(&repositoriesFile);
     do{
-        line = in.readLine();
-        if(line.startsWith("deb")){
-            isOn = true;
+        line = repositoriesFileStream.readLine();
+        if(line.startsWith("deb") || line.startsWith("#deb") || line.startsWith("# deb")){
+            ui->repositories_in_file_list->addItem(line);
         }
-    }while (!line.isNull());
-    file.close();
+    }while(!line.isNull());
+}
 
-    if(isOn){
-        ui->on_and_off_button->setText("turn off");
-    }else{
+void Apt_Preferences::on_repositories_in_file_list_itemClicked(QListWidgetItem *item)
+{
+    if(item->text().startsWith("#")){
         ui->on_and_off_button->setText("turn on");
+        selectedRepo = item->text().remove(0,1);
+    }else{
+        ui->on_and_off_button->setText("turn off");
+        selectedRepo = item->text();
     }
+    qDebug() << "selected repo: " + selectedRepo;
 }
 
 void Apt_Preferences::on_on_and_off_button_clicked()
 {
-    bool isOn = true;
-    QString line, repo;
-    QFile file(selectedFile);
-    //find repository in file
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QTextStream in(&file);
-    do{
-        line = in.readLine();
-        if(line.startsWith("deb")){
-            repo = line;
-            qDebug() << "found "+line.toUtf8();
-            isOn = true;
-        }else if (line.startsWith("#deb") || line.startsWith("# deb")){
-            isOn = false;
-            repo = line;
-            qDebug() << "found" +line.toUtf8();
-        }
-    }while (!line.isNull());
-    file.close();
-
-    file.open(QFile::WriteOnly);
-    if (isOn == true){
-        //comment out repository if it has to be turned off
-        QString output = "#" + repo;
-        qDebug() << "writing " + output;
-        file.write(output.toUtf8());
-        ui->on_and_off_button->setText("turn on");
-    }else{
-        //uncomment repository to turn it on
-        QString output = repo.remove(0, 1);
-        qDebug() << "writing " + output;
-        file.write(output.toUtf8());
-        ui->on_and_off_button->setText("turn off");
-    }
-    file.close();
+    write_to_file();
 }
+
+void Apt_Preferences::write_to_file(){
+
+    QFile orginalFile(selectedFile);
+    orginalFile.open(QFile::ReadWrite);
+
+    QFile tempFile(selectedFile + "_temp");
+    tempFile.open(QFile::ReadWrite | QIODevice::Append);
+    tempFile.resize(0);
+    QString line;
+
+    QTextStream orginalFileStream(&orginalFile);
+    QTextStream temporaryFileStream(&tempFile);
+    do{
+        line = orginalFileStream.readLine();
+        qDebug() << "line: " + line;
+        if(line == "#" + selectedRepo){
+            tempFile.write(line.remove(0,1).toUtf8() + "\n");
+            ui->on_and_off_button->setText("turn off");
+            qDebug() << "turn on";
+        }else if(line == selectedRepo){
+            tempFile.write("#" + line.toUtf8() + "\n");
+            ui->on_and_off_button->setText("turn on");
+            qDebug() << "turn off";
+        }
+        else{
+            tempFile.write(line.toUtf8() + "\n");
+            qDebug() << "zwykła linia";
+        }
+    }
+    while (!line.isNull());
+    orginalFile.remove();
+    tempFile.rename(selectedFile);
+    tempFile.close();
+}
+
+
+

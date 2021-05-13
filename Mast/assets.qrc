@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/assets">
         <file>images/mast_img.jpg</file>
+        <file>Diffnes.qss</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

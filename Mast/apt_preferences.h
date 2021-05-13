@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QListWidgetItem>
 
+static QString selectedRepo;
+static QString selectedFile;
 
-static QString selectedFile = NULL;
 
 namespace Ui {
 class Apt_Preferences;
@@ -20,9 +21,9 @@ public:
     ~Apt_Preferences();
 private slots:
     void on_listWidget_itemClicked(QListWidgetItem *item);
-
     void on_on_and_off_button_clicked();
-
+    void on_repositories_in_file_list_itemClicked(QListWidgetItem *item);
+    void write_to_file();
 private:
     Ui::Apt_Preferences *ui;
 };
