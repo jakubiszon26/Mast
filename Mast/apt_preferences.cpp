@@ -89,7 +89,15 @@ void Apt_Preferences::refresh_repositories_list(){
     QTextStream repositoriesFileStream(&repositoriesFile);
     do{
         line = repositoriesFileStream.readLine();
-        if(line.startsWith("deb") || line.startsWith("#deb") || line.startsWith("# deb")){
+        if(line.startsWith("deb") ||
+                line.startsWith(" deb") ||
+                line.startsWith("#deb")||
+                line.startsWith("# deb")||
+                line.startsWith("deb-src")||
+                line.startsWith("#deb-src")||
+                line.startsWith("# deb-src")||
+                line.startsWith(" deb-src")
+                ){
             ui->repositories_in_file_list->addItem(line);
         }
     }while(!line.isNull());
