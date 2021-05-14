@@ -31,8 +31,11 @@ private slots:
     void ReadOut();
     void ReadErr();
     void HandleFinished();
-private:
-    Ui::Apt_Preferences *ui;
+    void on_install_missing_clicked();
+    void command(QString command, QStringList args, QString finishMessage, bool isMessageBox);
+
+    private:
+        Ui::Apt_Preferences *ui;
 };
 
 #endif // APT_PREFERENCES_H

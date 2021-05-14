@@ -6,7 +6,7 @@
 #include <QProcess>
 #include <QMessageBox>
 #include <QFileDialog>
-
+#include "bootloader.h"
 Apt_Preferences::Apt_Preferences(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Apt_Preferences)
@@ -139,17 +139,30 @@ void Apt_Preferences::on_select_deb_button_clicked()
 
 void Apt_Preferences::on_install_button_clicked()
 {
+    command("dpkg", {"-i", ui->deb_path_edit->text()}, "finished installing package with", true);
+}
+
+void Apt_Preferences::on_install_missing_clicked()
+{
+    command("apt", {"install", "-f"}, "finished ", true);
+}
+
+void Apt_Preferences::command(QString command, QStringList args, QString finishMessage, bool isMessageBox){
     QProcess *p = new QProcess( this );
     p->setEnvironment( QProcess::systemEnvironment() );
     p->setProcessChannelMode( QProcess::MergedChannels );
-    p->start("dpkg", {"-i", ui->deb_path_edit->text()});
+    p->start(command, args);
     p->waitForStarted();
     connect( p, SIGNAL(readyReadStandardOutput()), this, SLOT(ReadOut()) );
     connect( p, SIGNAL(readyReadStandardError()), this, SLOT(ReadErr()) );
     connect(p, &QProcess::finished, [=](int exitCode){
-        QMessageBox message;
-        message.setText("Finished with exit code: " + QString::number(exitCode));
-        message.exec();
+        if(isMessageBox){
+            QMessageBox message;
+            message.setText(finishMessage + "\nexit code: " + QString::number(exitCode));
+            message.exec();
+        }else{
+            ui->output_textBrowser->append(finishMessage + "exit code: " + QString::number(exitCode));
+        }
     });
 }
 
