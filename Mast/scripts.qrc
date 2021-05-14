@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Scripts/enable_service.sh</file>
-    </qresource>
-</RCC>
