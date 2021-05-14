@@ -146,7 +146,7 @@ void Apt_Preferences::on_install_button_clicked()
     p->waitForStarted();
     connect( p, SIGNAL(readyReadStandardOutput()), this, SLOT(ReadOut()) );
     connect( p, SIGNAL(readyReadStandardError()), this, SLOT(ReadErr()) );
-    QObject::connect(p, &QProcess::finished, [=](int exitCode, QProcess::ExitStatus exitStatus){
+    connect(p, &QProcess::finished, [=](int exitCode){
         QMessageBox message;
         message.setText("Finished with exit code: " + QString::number(exitCode));
         message.exec();

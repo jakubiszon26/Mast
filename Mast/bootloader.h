@@ -19,7 +19,9 @@ public:
 private slots:
     void on_install_button_clicked();
     void install_refind();
-
+    void ReadOut();
+    void ReadErr();
+    void command(QString command, QStringList args, QString finishMessage, bool isMessageBox);
 private:
     Ui::bootloader *ui;
 };
