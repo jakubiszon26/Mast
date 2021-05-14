@@ -40,7 +40,7 @@ chmod +x Mast
 ## Required depedencies to run Mast
 1. [pkexec](https://www.freedesktop.org/software/polkit/docs/0.105/pkexec.1.html)
 2. [qt6-base](https://doc.qt.io/qt-6/linux.html)
-
+3. [apt](https://www.debian.org/doc/manuals/apt-guide/ch2.pl.html)
  ## Contribute
  If you want to help develop this project, please follow the steps below
  1. Check for issues [here](https://github.com/jakubiszon26/Mast/issues)

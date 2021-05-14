@@ -26,7 +26,11 @@ private slots:
     void write_to_file();
     void refresh_repositories_list();
     void on_ppa_submit_button_clicked();
-
+    void on_select_deb_button_clicked();
+    void on_install_button_clicked();
+    void ReadOut();
+    void ReadErr();
+    void HandleFinished();
 private:
     Ui::Apt_Preferences *ui;
 };

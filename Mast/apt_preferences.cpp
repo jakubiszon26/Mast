@@ -5,7 +5,7 @@
 #include<QDebug>
 #include <QProcess>
 #include <QMessageBox>
-
+#include <QFileDialog>
 
 Apt_Preferences::Apt_Preferences(QWidget *parent) :
     QWidget(parent),
@@ -49,6 +49,29 @@ void Apt_Preferences::on_on_and_off_button_clicked()
     refresh_repositories_list();
 }
 
+void Apt_Preferences::refresh_repositories_list(){
+
+    ui->repositories_in_file_list->clear();
+    QString line;
+    QFile repositoriesFile(selectedFile);
+    repositoriesFile.open(QFile::ReadOnly);
+    QTextStream repositoriesFileStream(&repositoriesFile);
+    do{
+        line = repositoriesFileStream.readLine();
+        if(line.startsWith("deb") ||
+                line.startsWith(" deb") ||
+                line.startsWith("#deb")||
+                line.startsWith("# deb")||
+                line.startsWith("deb-src")||
+                line.startsWith("#deb-src")||
+                line.startsWith("# deb-src")||
+                line.startsWith(" deb-src")
+                ){
+            ui->repositories_in_file_list->addItem(line);
+        }
+    }while(!line.isNull());
+}
+
 void Apt_Preferences::write_to_file(){
 
     QFile orginalFile(selectedFile);
@@ -80,29 +103,6 @@ void Apt_Preferences::write_to_file(){
     tempFile.close();
 }
 
-void Apt_Preferences::refresh_repositories_list(){
-
-    ui->repositories_in_file_list->clear();
-    QString line;
-    QFile repositoriesFile(selectedFile);
-    repositoriesFile.open(QFile::ReadOnly);
-    QTextStream repositoriesFileStream(&repositoriesFile);
-    do{
-        line = repositoriesFileStream.readLine();
-        if(line.startsWith("deb") ||
-                line.startsWith(" deb") ||
-                line.startsWith("#deb")||
-                line.startsWith("# deb")||
-                line.startsWith("deb-src")||
-                line.startsWith("#deb-src")||
-                line.startsWith("# deb-src")||
-                line.startsWith(" deb-src")
-                ){
-            ui->repositories_in_file_list->addItem(line);
-        }
-    }while(!line.isNull());
-}
-
 void Apt_Preferences::on_ppa_submit_button_clicked()
 {
     QString ppa = ui->insert_ppa->text();
@@ -120,4 +120,55 @@ void Apt_Preferences::on_ppa_submit_button_clicked()
         message.exec();
     }
 }
+
+
+void Apt_Preferences::on_select_deb_button_clicked()
+{
+    QString debPackage = QFileDialog::getOpenFileName(this,
+                                                      tr("Select package"), "/home",
+                                                      tr("Deb packages (*.deb)"));
+    ui->deb_path_edit->setText(debPackage);
+    //info about package
+    QProcess p;
+    p.start("dpkg-deb", {"-I", debPackage});
+    p.waitForFinished();
+    QString packageInfo = p.readAllStandardOutput();
+    ui->package_info_text->insertPlainText(packageInfo);
+}
+
+
+void Apt_Preferences::on_install_button_clicked()
+{
+    QProcess *p = new QProcess( this );
+    p->setEnvironment( QProcess::systemEnvironment() );
+    p->setProcessChannelMode( QProcess::MergedChannels );
+    p->start("dpkg", {"-i", ui->deb_path_edit->text()});
+    p->waitForStarted();
+    connect( p, SIGNAL(readyReadStandardOutput()), this, SLOT(ReadOut()) );
+    connect( p, SIGNAL(readyReadStandardError()), this, SLOT(ReadErr()) );
+    QObject::connect(p, &QProcess::finished, [=](int exitCode, QProcess::ExitStatus exitStatus){
+        QMessageBox message;
+        message.setText("Finished with exit code: " + QString::number(exitCode));
+        message.exec();
+    });
+}
+
+void Apt_Preferences::ReadOut(){
+    QProcess *p = dynamic_cast<QProcess *>( sender() );
+    if (p)
+        ui->output_textBrowser->append(p->readAllStandardOutput());
+}
+
+void Apt_Preferences::ReadErr(){
+    QProcess *p = dynamic_cast<QProcess *>( sender() );
+    if (p)
+        ui->output_textBrowser->append(p->readAllStandardError());
+}
+
+void Apt_Preferences::HandleFinished(){
+    QMessageBox message;
+    message.setText("Done");
+    message.exec();
+}
+
 

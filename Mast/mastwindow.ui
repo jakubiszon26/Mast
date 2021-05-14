@@ -47,7 +47,7 @@
      <item row="1" column="0">
       <widget class="QPushButton" name="apt_settings_button">
        <property name="text">
-        <string>Apt settings</string>
+        <string>Apt and Software</string>
        </property>
       </widget>
      </item>
