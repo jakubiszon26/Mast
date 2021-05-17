@@ -10,6 +10,18 @@
     <height>425</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>465</width>
+    <height>425</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>465</width>
+    <height>425</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Services manager</string>
   </property>

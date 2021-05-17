@@ -10,6 +10,18 @@
     <height>467</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>575</width>
+    <height>467</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>575</width>
+    <height>467</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Apt and Software</string>
   </property>
@@ -21,6 +33,12 @@
      <width>571</width>
      <height>461</height>
     </rect>
+   </property>
+   <property name="sizeIncrement">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;k&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -178,6 +196,12 @@
        <width>331</width>
        <height>231</height>
       </rect>
+     </property>
+     <property name="sizeIncrement">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
      </property>
     </widget>
     <widget class="QTextBrowser" name="output_textBrowser">
