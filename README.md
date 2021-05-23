@@ -1,6 +1,5 @@
 # Mast
-### Attention
-App development is paused for 2 weeks due to my exams
+
 ## _Mint Additional Setup Tool_
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
