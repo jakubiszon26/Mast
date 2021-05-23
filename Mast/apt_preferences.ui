@@ -44,9 +44,9 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;k&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
-   <widget class="QWidget" name="tab">
+   <widget class="QWidget" name="software_repositories_tab">
     <attribute name="title">
      <string>Software Repositories</string>
     </attribute>
@@ -84,61 +84,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_3">
-    <attribute name="title">
-     <string>Personal Package Archive (PPA)</string>
-    </attribute>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Add new PPA</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="insert_ppa">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>231</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="placeholderText">
-      <string>for example: pantadeusz/fast</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="ppa_submit_button">
-     <property name="geometry">
-      <rect>
-       <x>460</x>
-       <y>380</y>
-       <width>101</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Submit</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_4">
+   <widget class="QWidget" name="install_software_tab">
     <attribute name="title">
      <string>Install software</string>
     </attribute>
@@ -226,10 +172,178 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_2">
+   <widget class="QWidget" name="ppa_tab">
     <attribute name="title">
-     <string>Apt preferences</string>
+     <string>Personal Package Archive (PPA)</string>
     </attribute>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Add new PPA</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="insert_ppa">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>for example: pantadeusz/fast</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ppa_submit_button">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>380</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Submit</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="apt_gui">
+    <attribute name="title">
+     <string>GUI for apt</string>
+    </attribute>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>481</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="update_button">
+        <property name="text">
+         <string>Update</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="upgrade_button">
+        <property name="text">
+         <string>Upgrade</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="full_upgrade_button">
+        <property name="text">
+         <string>Full upgrade</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="install_missing_button">
+        <property name="text">
+         <string>Install missing</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="autoremove_button">
+        <property name="text">
+         <string>Auto remove</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="list_installed_button">
+        <property name="text">
+         <string>List installed</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QTextBrowser" name="apt_output">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>220</y>
+       <width>481</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Output:&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>120</y>
+       <width>481</width>
+       <height>86</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="install_edit"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="search_button">
+        <property name="text">
+         <string>Search</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="remove_button">
+        <property name="text">
+         <string>Remove</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="remove_edit"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="install_button_2">
+        <property name="text">
+         <string>Install</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_3"/>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
  </widget>
