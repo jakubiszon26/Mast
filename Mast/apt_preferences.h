@@ -31,7 +31,6 @@ private slots:
     void ReadOut();
     void ReadErr();
     void HandleFinished();
-    void on_install_missing_clicked();
     void command(QString command, QStringList args, QString finishMessage, bool isMessageBox);
 
     private:

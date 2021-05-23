@@ -142,11 +142,6 @@ void Apt_Preferences::on_install_button_clicked()
     command("dpkg", {"-i", ui->deb_path_edit->text()}, "finished installing package with", true);
 }
 
-void Apt_Preferences::on_install_missing_clicked()
-{
-    command("apt", {"install", "-f"}, "finished ", true);
-}
-
 void Apt_Preferences::command(QString command, QStringList args, QString finishMessage, bool isMessageBox){
     QProcess *p = new QProcess( this );
     p->setEnvironment( QProcess::systemEnvironment() );
