@@ -44,7 +44,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;k&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -130,7 +130,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>11</pointsize>
       </font>
      </property>
      <property name="text">
@@ -155,7 +155,7 @@
     <widget class="QPushButton" name="select_deb_button">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>360</x>
        <y>10</y>
        <width>121</width>
        <height>31</height>
@@ -173,8 +173,8 @@
     <widget class="QPushButton" name="install_button">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>40</y>
+       <x>360</x>
+       <y>50</y>
        <width>121</width>
        <height>31</height>
       </rect>
@@ -214,8 +214,8 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: white;
-background-color: rgb(0, 0, 0);</string>
+      <string notr="true">color: black;
+background-color: white;</string>
      </property>
      <property name="html">
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -223,24 +223,6 @@ background-color: rgb(0, 0, 0);</string>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Output: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="install_missing">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>90</y>
-       <width>121</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>fix missing</string>
      </property>
     </widget>
    </widget>

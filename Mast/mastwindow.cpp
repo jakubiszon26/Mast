@@ -19,14 +19,7 @@ MastWindow::MastWindow(QWidget *parent)
     //warning for alpha version
     QMessageBox alphaWarning;
     alphaWarning.setText("this is alpha version. Please report any issues");
-    alphaWarning.exec();
-
-    //display boat picture on main window
-    QPixmap boatPicture(":/assets/images/mast_img.jpg");
-    int width = ui->mast_image->width();
-    int height = ui->mast_image->height();
-    boatPicture = boatPicture.scaled(width, height);
-    ui->mast_image->setPixmap(boatPicture);
+    alphaWarning.exec();   
 }
 
 MastWindow::~MastWindow()

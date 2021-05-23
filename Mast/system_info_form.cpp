@@ -3,6 +3,8 @@
 #include <qfile.h>
 #include <qdebug.h>
 
+QString systemName, systemVersion, systemBasedOn, systemWebsite, kernelInfo;
+
 System_Info_Form::System_Info_Form(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::System_Info_Form)
@@ -17,6 +19,7 @@ System_Info_Form::~System_Info_Form()
 }
 
 void System_Info_Form::display_system_info(){
+    // Find system info
     QFile file("/etc/os-release");
     if(!file.open(QIODevice::ReadOnly))
     {
@@ -28,20 +31,20 @@ void System_Info_Form::display_system_info(){
     do{
         line = instream.readLine();
         if(line.startsWith("NAME=")){
-            ui->output_container->insertPlainText("System - " + line.replace("NAME=", "") + "\n");
+            systemName = line.replace("NAME=", "");
         }
         else if(line.startsWith("VERSION=")){
-            ui->output_container->insertPlainText("System Version - " + line.replace("VERSION=", "") + "\n");
+            systemVersion = line.replace("VERSION=", "");
         }
         else if(line.startsWith("ID_LIKE=")){
-            ui->output_container->insertPlainText("Based on - " + line.replace("ID_LIKE=", "") + "\n");
+            systemBasedOn = line.replace("ID_LIKE=", "");
         }
         else if(line.startsWith("HOME_URL=")){
-            ui->output_container->insertPlainText("Website - " + line.replace("HOME_URL=", "") + "\n");
+           systemWebsite = line.replace("HOME_URL=", "");
         }
     } while (!line.isNull());
-
     file.close();
+
     QFile kernelFile("/proc/version");
     QTextStream kernelInstream(&kernelFile);
     if(!kernelFile.open(QIODevice::ReadOnly))
@@ -49,7 +52,15 @@ void System_Info_Form::display_system_info(){
         qDebug() << "error opening file: " << file.error();
         return;
     }
-    line = kernelInstream.readLine();
-    ui->output_container->insertPlainText("\nKernel info - " + line);
+    kernelInfo = kernelInstream.readLine();
 
+    //append system info into widgets
+    ui->system_name->setText(systemName);
+    ui->system_version->setText(systemVersion);
+    ui->based_on->setText(systemBasedOn);
+    ui->system_website->setText(systemWebsite);
+    ui->kernel_info->setText(kernelInfo);
 }
+
+
+
