@@ -45,6 +45,12 @@ private slots:
 
     void on_list_installed_button_clicked();
 
+    void on_install_button_2_clicked();
+
+    void on_remove_button_clicked();
+
+    void on_search_button_clicked();
+
 private:
         Ui::Apt_Preferences *ui;
 };

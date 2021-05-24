@@ -214,6 +214,25 @@ void Apt_Preferences::on_full_upgrade_button_clicked()
 
 void Apt_Preferences::on_list_installed_button_clicked()
 {
-    command("apt", {"list", "--installed"}, "full upgrade finished", false, ui->apt_output);
+    command("apt", {"list", "--installed"}, "list installed packages finished", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_install_button_2_clicked()
+{
+    command("apt", {"install", ui->install_edit->text(), "-y"}, "install finished ", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_remove_button_clicked()
+{
+    command("apt", {"remove", ui->remove_edit->text(), "-y"}, "remove finished ", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_search_button_clicked()
+{
+    command("apt", {"search", ui->search_edit->text()}, "search finished ", false, ui->apt_output);
+
 }
 
