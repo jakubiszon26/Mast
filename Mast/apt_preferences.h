@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QListWidgetItem>
-
+#include <QTextBrowser>
 static QString selectedRepo;
 static QString selectedFile;
 
@@ -31,7 +31,7 @@ private slots:
     void ReadOut();
     void ReadErr();
     void HandleFinished();
-    void command(QString command, QStringList args, QString finishMessage, bool isMessageBox);
+    void command(QString command, QStringList args, QString finishMessage, bool isMessageBox, QTextBrowser *output);
 
     private:
         Ui::Apt_Preferences *ui;
