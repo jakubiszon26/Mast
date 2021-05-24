@@ -6,7 +6,7 @@
 #include <QTextBrowser>
 static QString selectedRepo;
 static QString selectedFile;
-
+static QTextBrowser *activeOutput;
 
 namespace Ui {
 class Apt_Preferences;
@@ -33,7 +33,9 @@ private slots:
     void HandleFinished();
     void command(QString command, QStringList args, QString finishMessage, bool isMessageBox, QTextBrowser *output);
 
-    private:
+    void on_update_button_clicked();
+
+private:
         Ui::Apt_Preferences *ui;
 };
 

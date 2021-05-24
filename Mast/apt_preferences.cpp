@@ -144,6 +144,7 @@ void Apt_Preferences::on_install_button_clicked()
 }
 
 void Apt_Preferences::command(QString command, QStringList args, QString finishMessage, bool isMessageBox, QTextBrowser *output){
+    activeOutput = output;
     QProcess *p = new QProcess( this );
     p->setEnvironment( QProcess::systemEnvironment() );
     p->setProcessChannelMode( QProcess::MergedChannels );
@@ -165,13 +166,13 @@ void Apt_Preferences::command(QString command, QStringList args, QString finishM
 void Apt_Preferences::ReadOut(){
     QProcess *p = dynamic_cast<QProcess *>( sender() );
     if (p)
-        ui->output_textBrowser->append(p->readAllStandardOutput());
+        activeOutput->append(p->readAllStandardOutput());
 }
 
 void Apt_Preferences::ReadErr(){
     QProcess *p = dynamic_cast<QProcess *>( sender() );
     if (p)
-        ui->output_textBrowser->append(p->readAllStandardError());
+        activeOutput->append(p->readAllStandardError());
 }
 
 void Apt_Preferences::HandleFinished(){
@@ -180,4 +181,9 @@ void Apt_Preferences::HandleFinished(){
     message.exec();
 }
 
+/////////////////////////APT GUI//////////////////////////
+void Apt_Preferences::on_update_button_clicked()
+{
+    command("apt", {"update"}, "finished apt update", true, ui->apt_output);
+}
 
