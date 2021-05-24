@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include "bootloader.h"
+#include <QTextBrowser>
 Apt_Preferences::Apt_Preferences(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Apt_Preferences)
@@ -139,10 +140,11 @@ void Apt_Preferences::on_select_deb_button_clicked()
 
 void Apt_Preferences::on_install_button_clicked()
 {
-    command("dpkg", {"-i", ui->deb_path_edit->text()}, "finished installing package with", true);
+    command("dpkg", {"-i", ui->deb_path_edit->text()}, "finished installing package with", true, ui->output_textBrowser );
 }
 
-void Apt_Preferences::command(QString command, QStringList args, QString finishMessage, bool isMessageBox){
+void Apt_Preferences::command(QString command, QStringList args, QString finishMessage, bool isMessageBox, QTextBrowser *output){
+    activeOutput = output;
     QProcess *p = new QProcess( this );
     p->setEnvironment( QProcess::systemEnvironment() );
     p->setProcessChannelMode( QProcess::MergedChannels );
@@ -156,7 +158,7 @@ void Apt_Preferences::command(QString command, QStringList args, QString finishM
             message.setText(finishMessage + "\nexit code: " + QString::number(exitCode));
             message.exec();
         }else{
-            ui->output_textBrowser->append(finishMessage + "exit code: " + QString::number(exitCode));
+            output->append(finishMessage + "exit code: " + QString::number(exitCode));
         }
     });
 }
@@ -164,13 +166,13 @@ void Apt_Preferences::command(QString command, QStringList args, QString finishM
 void Apt_Preferences::ReadOut(){
     QProcess *p = dynamic_cast<QProcess *>( sender() );
     if (p)
-        ui->output_textBrowser->append(p->readAllStandardOutput());
+        activeOutput->append(p->readAllStandardOutput());
 }
 
 void Apt_Preferences::ReadErr(){
     QProcess *p = dynamic_cast<QProcess *>( sender() );
     if (p)
-        ui->output_textBrowser->append(p->readAllStandardError());
+        activeOutput->append(p->readAllStandardError());
 }
 
 void Apt_Preferences::HandleFinished(){
@@ -179,4 +181,58 @@ void Apt_Preferences::HandleFinished(){
     message.exec();
 }
 
+/////////////////////////APT GUI//////////////////////////
+void Apt_Preferences::on_update_button_clicked()
+{
+    command("apt", {"update"}, "finished apt update", false, ui->apt_output);
+}
+
+void Apt_Preferences::on_upgrade_button_clicked()
+{
+    command("apt", {"upgrade"}, "finished apt upgrade", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_autoremove_button_clicked()
+{
+    command("apt", {"autoremove"}, "finished apt autoremove ", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_install_missing_button_clicked()
+{
+    command("apt", {"update", "--fix-missing"}, "update --fix-missing done ", false, ui->apt_output);
+    command("apt", {"install", "-f"}, "apt install -f finished work", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_full_upgrade_button_clicked()
+{
+    command("apt", {"full-upgrade"}, "full upgrade finished", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_list_installed_button_clicked()
+{
+    command("apt", {"list", "--installed"}, "list installed packages finished", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_install_button_2_clicked()
+{
+    command("apt", {"install", ui->install_edit->text(), "-y"}, "install finished ", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_remove_button_clicked()
+{
+    command("apt", {"remove", ui->remove_edit->text(), "-y"}, "remove finished ", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_search_button_clicked()
+{
+    command("apt", {"search", ui->search_edit->text()}, "search finished ", false, ui->apt_output);
+
+}
 

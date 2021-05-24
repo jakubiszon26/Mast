@@ -3,10 +3,10 @@
 
 #include <QWidget>
 #include <QListWidgetItem>
-
+#include <QTextBrowser>
 static QString selectedRepo;
 static QString selectedFile;
-
+static QTextBrowser *activeOutput;
 
 namespace Ui {
 class Apt_Preferences;
@@ -31,9 +31,27 @@ private slots:
     void ReadOut();
     void ReadErr();
     void HandleFinished();
-    void command(QString command, QStringList args, QString finishMessage, bool isMessageBox);
+    void command(QString command, QStringList args, QString finishMessage, bool isMessageBox, QTextBrowser *output);
 
-    private:
+    void on_update_button_clicked();
+
+    void on_upgrade_button_clicked();
+
+    void on_autoremove_button_clicked();
+
+    void on_install_missing_button_clicked();
+
+    void on_full_upgrade_button_clicked();
+
+    void on_list_installed_button_clicked();
+
+    void on_install_button_2_clicked();
+
+    void on_remove_button_clicked();
+
+    void on_search_button_clicked();
+
+private:
         Ui::Apt_Preferences *ui;
 };
 
