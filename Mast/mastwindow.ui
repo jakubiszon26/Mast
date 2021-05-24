@@ -62,22 +62,22 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="system_tab">
      <attribute name="title">
       <string>System</string>
      </attribute>
-     <widget class="QWidget" name="gridLayoutWidget">
+     <widget class="QWidget" name="gridLayoutWidget_3">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>261</width>
-        <height>81</height>
+        <width>461</width>
+        <height>61</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <widget class="QPushButton" name="system_info_button">
          <property name="text">
@@ -85,14 +85,14 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="0" column="1">
         <widget class="QPushButton" name="apt_settings_button">
          <property name="text">
           <string>Apt and Software</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="1" column="0">
         <widget class="QPushButton" name="services_manager_button">
          <property name="text">
           <string>Services manager</string>
@@ -106,27 +106,27 @@
      <attribute name="title">
       <string>Hardware</string>
      </attribute>
-     <widget class="QWidget" name="gridLayoutWidget_2">
+     <widget class="QWidget" name="gridLayoutWidget_4">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>261</width>
-        <height>81</height>
+        <width>461</width>
+        <height>61</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="2" column="0">
-        <widget class="QPushButton" name="hostname_button">
-         <property name="text">
-          <string>Hostname</string>
-         </property>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <widget class="QPushButton" name="hardware_info_button">
          <property name="text">
           <string>Hardware info</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="hostname_button">
+         <property name="text">
+          <string>Hostname</string>
          </property>
         </widget>
        </item>
