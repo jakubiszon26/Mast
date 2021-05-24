@@ -184,6 +184,36 @@ void Apt_Preferences::HandleFinished(){
 /////////////////////////APT GUI//////////////////////////
 void Apt_Preferences::on_update_button_clicked()
 {
-    command("apt", {"update"}, "finished apt update", true, ui->apt_output);
+    command("apt", {"update"}, "finished apt update", false, ui->apt_output);
+}
+
+void Apt_Preferences::on_upgrade_button_clicked()
+{
+    command("apt", {"upgrade"}, "finished apt upgrade", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_autoremove_button_clicked()
+{
+    command("apt", {"autoremove"}, "finished apt autoremove ", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_install_missing_button_clicked()
+{
+    command("apt", {"update", "--fix-missing"}, "update --fix-missing done ", false, ui->apt_output);
+    command("apt", {"install", "-f"}, "apt install -f finished work", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_full_upgrade_button_clicked()
+{
+    command("apt", {"full-upgrade"}, "full upgrade finished", false, ui->apt_output);
+}
+
+
+void Apt_Preferences::on_list_installed_button_clicked()
+{
+    command("apt", {"list", "--installed"}, "full upgrade finished", false, ui->apt_output);
 }
 

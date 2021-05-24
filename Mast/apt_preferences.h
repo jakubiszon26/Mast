@@ -35,6 +35,16 @@ private slots:
 
     void on_update_button_clicked();
 
+    void on_upgrade_button_clicked();
+
+    void on_autoremove_button_clicked();
+
+    void on_install_missing_button_clicked();
+
+    void on_full_upgrade_button_clicked();
+
+    void on_list_installed_button_clicked();
+
 private:
         Ui::Apt_Preferences *ui;
 };
