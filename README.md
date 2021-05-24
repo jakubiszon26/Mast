@@ -14,6 +14,7 @@ Mast is setup tool for Linux Mint configuration which provides this functionalit
 - Hardware info
 - Bootloader (install refind)
 - Change hostname
+- Use apt commands using graphical user interface
 
 # Screenshot
 ![Alt text](screenshot.png)
