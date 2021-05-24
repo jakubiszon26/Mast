@@ -6,7 +6,7 @@
 ![](https://img.shields.io/badge/Qt-6.0-green.svg)
 ![](https://img.shields.io/badge/Qt-qmake-green.svg)
 ## what is Mast?
-Mast is setup tool for Linux Mint configuration which provides this functionalities (for now in version 1.0 alpha)
+Mast is setup tool for Linux Mint configuration which provides this functionalities (for now in version 1.0)
 
 - View system info
 - Repositories Manager
@@ -24,11 +24,11 @@ Mast is setup tool for Linux Mint configuration which provides this functionalit
 1. First download latest Mast release from github releases here: [Download](https://github.com/jakubiszon26/Mast/releases/tag/v1.0-alpha)
 2. Then unpack the archive 
 ```bash
-tar -xf Mast.1.0.alpha.tar.xz
+tar -xf Mast_1.0.tar.xz
 ```
 3. Make Mast executable
 ```bash
-cd "Mast 1.0 alpha"
+cd "Mast_1.0.tar.xz"
 chmod +x Mast.sh
 cd bin
 chmod +x Mast
