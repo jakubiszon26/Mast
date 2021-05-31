@@ -15,6 +15,7 @@ SOURCES += \
     hostname.cpp \
     main.cpp \
     mastwindow.cpp \
+    security.cpp \
     services_manager.cpp \
     system_info_form.cpp
 
@@ -24,6 +25,7 @@ HEADERS += \
     hardware_info.h \
     hostname.h \
     mastwindow.h \
+    security.h \
     services_manager.h \
     system_info_form.h
 
@@ -33,6 +35,7 @@ FORMS += \
     hardware_info.ui \
     hostname.ui \
     mastwindow.ui \
+    security.ui \
     services_manager.ui \
     system_info_form.ui
 

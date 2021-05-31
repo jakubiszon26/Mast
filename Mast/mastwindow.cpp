@@ -58,3 +58,9 @@ void MastWindow::on_hostname_button_clicked()
     hostnames.show();
 }
 
+
+void MastWindow::on_security_button_clicked()
+{
+    security.show();
+}
+

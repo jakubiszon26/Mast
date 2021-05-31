@@ -8,6 +8,7 @@
 #include "hardware_info.h"
 #include "bootloader.h"
 #include "hostname.h"
+#include "security.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MastWindow; }
@@ -34,6 +35,8 @@ private slots:
 
     void on_hostname_button_clicked();
 
+    void on_security_button_clicked();
+
 private:
     Ui::MastWindow *ui;
     System_Info_Form systemInfoForm;
@@ -42,5 +45,6 @@ private:
     Hardware_Info hardwareInfo;
     bootloader bootloaderForm;
     Hostname hostnames;
+    Security security;
 };
 #endif // MASTWINDOW_H
