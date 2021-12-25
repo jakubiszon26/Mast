@@ -5,7 +5,7 @@
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 ![](https://img.shields.io/badge/Qt-6.0-green.svg)
 ![](https://img.shields.io/badge/Qt-qmake-green.svg)
-[discord](https://discord.gg/sJGExgpcSQ)
+
 ## what is Mast?
 Mast is setup tool for Linux Mint configuration which provides this functionalities (for now in version 1.0)
 
@@ -53,7 +53,3 @@ chmod +x Mast
  5. if there are any problems you can write to our community on signal -  [here](https://signal.group/#CjQKIPk8nX35H14A8PIgy-5p40zxI8e8fquxCm1i2Wg1lyY9EhBn3vLNkKDft0WaVWummAYZ)
  
   You are free to create your own ideas instead of fixing bugs and issues but we do not promise that your changes will be accepted 
- 
- 
-## resources used
-dark theme - [Diffnes by. DevSec Studio](https://qss-stock.devsecstudio.com/templates/components/components3/diffnes/Diffnes.rar) 
